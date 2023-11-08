@@ -33,7 +33,8 @@ const socios = {
     if(socio instanceof Socio ){
       let existe=false;
       for (var i=0;i<this.listaSocios.length;i++){
-        if(this.listaSocios[i].nombre.trim().toUpperCase()==socio.nombre.trim().toUpperCase() &&  this.listaSocios[i].apellido.trim().toUpperCase()==socio.apellido.trim().toUpperCase()){
+        if(this.listaSocios[i].nombre.trim().toUpperCase()==socio.nombre.trim().toUpperCase() 
+            &&  this.listaSocios[i].apellido.trim().toUpperCase()==socio.apellido.trim().toUpperCase()){
           existe=true;
           break;
         }
@@ -50,6 +51,9 @@ const socios = {
   //Encadena y retorna la lista de socios 
   obtenerSocios:function() {
     let textoAgregar='';
+    if(this.listaSocios.length==0){
+      textoAgregar='No hay socios dados de alta';
+    }
     for(var i=0;i<this.listaSocios.length;i++) {
       textoAgregar+=this.listaSocios[i].toString();
     }
@@ -60,7 +64,7 @@ const socios = {
     if(this.listaSocios.length>0) {
       return this.listaSocios.slice(-1)[0].id ; 
     } else {
-      return 1;
+      return 0;
     }
   }
 }
@@ -133,7 +137,7 @@ TODO:
  */
 function crearSocio (nombre, apellido) {
   // TODO: crear objeto socio
-   let socio= new Socio(crearID (),nombre,apellido);
+  let socio= new Socio(crearID (),nombre,apellido);
   // TODO: añadir el objeto al array
   socios.anadirSocio(socio);
 }
@@ -144,7 +148,7 @@ TODO:
     ID que hay en el array de socios
 */
 function crearID () { 
-    return socios.obtenerUltimoID()+1;
+   return socios.obtenerUltimoID()+1;
 }
 
 // EJERCICIO 2
@@ -155,7 +159,7 @@ function crearID () {
 */
 function pintarListaSocios () {
   //TODO: borramos todo lo que hay en el div
- contenedorEscribirSocios.innerHTML='';
+  contenedorEscribirSocios.innerHTML='';
    //TODO: bucle para recorrer y pintar el array de socios
    //TODO: debemos añadir los socios a la pagina web
   contenedorEscribirSocios.innerHTML=socios.obtenerSocios();

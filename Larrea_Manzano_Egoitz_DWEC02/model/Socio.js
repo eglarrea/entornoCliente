@@ -1,4 +1,5 @@
 'use strict'
+// Clase Socio
 class Socio {
   constructor(id,nombre,apellido) {
       this.id=id;
@@ -6,6 +7,6 @@ class Socio {
       this.apellido=apellido;
   }
   toString() {
-    return "Socio numero "+this.id +": "+ this.nombre+" "+this.apellido+"<br>";
+    return "<br>Socio numero "+this.id +": "+ this.nombre+" "+this.apellido+"<br>";
   }
 }

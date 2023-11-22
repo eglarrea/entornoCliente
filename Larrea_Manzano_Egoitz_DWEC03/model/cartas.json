@@ -1,0 +1,35 @@
+[   
+   {
+      "id":1,
+	  "imagen":"images\/java.jpg"
+      
+   },
+   {
+      "id":2,
+      "imagen":"images\/angular.jpg"
+   },
+
+   {
+      "id":3,
+      "imagen":"images\/js.jpg"
+   }
+   ,
+
+   {
+      "id":4,
+      "imagen":"images\/python.jpg"
+   }
+   ,
+
+   {
+      "id":5,
+      "imagen":"images\/elvientoconoceminombre.jpg"
+   }
+   ,
+
+   {
+      "id":6,
+      "imagen":"images\/elvientoconoceminombre.jpg"
+   }
+ 
+]

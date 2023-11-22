@@ -146,6 +146,8 @@ $(document).ready(function(){
     if(capturarDatosSocio ()){
       $.cookie("usuario", "Egoitz Larrea"); 
       window.location.href = '/vista/juego.html';
+    }else{
+      $('#error').removeClass("d-none");
     }
   })
 
@@ -178,11 +180,6 @@ $(document).ready(function(){
             objects[0].classList.remove("active");
            
           }
-         
-        
-         
-        
-          
         }
       }
     }

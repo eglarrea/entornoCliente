@@ -19,17 +19,5 @@
       "id":4,
       "imagen":"images\/python.jpg"
    }
-   ,
-
-   {
-      "id":5,
-      "imagen":"images\/elvientoconoceminombre.jpg"
-   }
-   ,
-
-   {
-      "id":6,
-      "imagen":"images\/elvientoconoceminombre.jpg"
-   }
- 
+   
 ]

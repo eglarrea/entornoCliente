@@ -1,6 +1,6 @@
 'use strict'
 // Funcion para agretar ficheros js 
-/*function include(file) {
+function include(file) {
  
   let script = document.createElement('script');
   script.src = file;
@@ -9,10 +9,11 @@
 
   document.getElementsByTagName('head').item(0).appendChild(script);
 
-}*/
+}
 
 //Incluimos el objeto Socio necesario para la aplicacion
-//include('./model/Socio.js');
+include('../model/Usuario.js');
+
 
 console.log('Empieza el programa')
 
@@ -31,7 +32,7 @@ const usuarios = {
   //Añade un socio a la lista
   anadirUsuario:function(usuario) {
     //Comprobamos si el dato pasado es del tipo Socio
-    if(usuario instanceof Usuarios ){
+    if(usuario instanceof Usuario ){
       /*let existe=false;
       for (var i=0;i<this.listaSocios.length;i++){
         if(this.listaUsuarios[i].nombre.trim().toUpperCase()==usuario.nombre.trim().toUpperCase() 
@@ -50,31 +51,21 @@ const usuarios = {
     }
   },
   //Encadena y retorna la lista de socios 
-  obtenerSocios:function() {
-    let textoAgregar='';
-    if(this.listaSocios.length==0){
-      textoAgregar='No hay socios dados de alta';
+  usuarioValido:function(usuario,clave) {
+    for(var i=0;i<this.listaUsuarios.length;i++) {
+      if(this.listaUsuarios[i].usuario==usuario){
+        if(this.listaUsuarios[i].esContrasenaValida(clave)){
+          return true;
+        }else{
+          return false;
+        }
+      }
+   
     }
-    for(var i=0;i<this.listaSocios.length;i++) {
-      textoAgregar+=this.listaSocios[i].toString();
-    }
-    return textoAgregar;
+    return false;
   },
-  
-  obtenerUltimoID:function() {
-    if(this.listaSocios.length>0) {
-      return this.listaSocios.slice(-1)[0].id ; 
-    } else {
-      return 0;
-    }
-  }
+
 }
-
-// TODO: array para añadir los socios cuando se cargue el DOM Completo
-/*document.addEventListener("DOMContentLoaded", function() {
-  cargarSociosJSON();
-}); */
-
 // ------------------- FUNCIONES ------------------------
 
 // EJERCICIO 1
@@ -108,26 +99,28 @@ TODO:  metodo para añadir socios al array
 function aniadirUsuarioInicialesArray(data) {
     console.log('socios', data);
     for( var i=0;(data!==undefined) && (i< data.length) ;i++){
-      console.log(i+" :"+data[i].contraseña);
-     // let socio= new Usuario(i,data.socios[i].nombre,data.socios[i].apellido);
-     // usuarios.anadirSocio(socio);
+      console.log(i+" :"+data[i].id+" "+data[i].nombre+" "+data[i].apellido+" "+data[i].usuario+" "+ data[i].contraseña);
+      let socio= new Usuario(data[i].id,data[i].nombre,data[i].apellido,data[i].usuario,data[i].contraseña);
+      usuarios.anadirUsuario(socio);
     }
-   // console.log(socios.listaSocios.length);
-  //  TODO: cargar el fichero JSON, parsearlo a objetos tipo "socio" y añadirlos al array
 }
-cargarSociosJSON ();
+
 /*
     TODO: Meotodo para capturar los datos del socio introducidor en el formulario
 
 */
 function capturarDatosSocio () {
   // TODO: recoger los el nombre y apellido del HTML
-  let nombre=document.getElementById("fnombre").value;
-  let apellido=document.getElementById("fapellido").value;
-  if(nombre.trim()=='' || apellido.trim()==''){
+  let usuario=document.getElementById("usuarioID").value;
+  let clave=document.getElementById("claveID").value;
+  if(usuario.trim()=='' || clave.trim()==''){
     alert("Los datos nombre y apellido son obligatorios");
   }else{
-    crearSocio(nombre,apellido);
+   if(usuarios.usuarioValido(usuario,clave)){
+    return true;
+   }else{
+    return false;
+   }
   }
   // TODO: crear el socio y añadirlo al array
 }
@@ -144,31 +137,18 @@ function crearUsuario (nombre, apellido) {
   usuarios.anadirSocio(usuario);
 }
 
-/*
-TODO: 
-    Metodo para crear el ID del socio en funcion del ultimo
-    ID que hay en el array de socios
-*/
-function crearID () { 
-   return socios.obtenerUltimoID()+1;
-}
-
-// EJERCICIO 2
-
-/*
-  TODO: metodo que elimina la lista previamente pintada en el contenedor asignado 
-  para pintar socios, recorre el array con un bucle y pinta los socios 
-*/
-function pintarListaSocios () {
-  //TODO: borramos todo lo que hay en el div
-  contenedorEscribirSocios.innerHTML='';
-   //TODO: bucle para recorrer y pintar el array de socios
-   //TODO: debemos añadir los socios a la pagina web
-  contenedorEscribirSocios.innerHTML=socios.obtenerSocios();
-}
-
 // ------------------- MAIN ------------------------
 $(document).ready(function(){
+  $.removeCookie("usuario") 
+  cargarSociosJSON();
+  $("#formLogin").on('submit', function(event,e){
+    event.preventDefault(); 
+    if(capturarDatosSocio ()){
+      $.cookie("usuario", "Egoitz Larrea"); 
+      window.location.href = '/vista/juego.html';
+    }
+  })
+
 	$(".carta").on('click', function(event,e){
     if(!$(event.currentTarget).hasClass("acertado")){
       if($(event.currentTarget).hasClass("active")){

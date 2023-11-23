@@ -15,7 +15,16 @@ include('../model/Carta.js');
 const marcador={
   intentos:0,
   aciertos:0,
-  fallos:0
+  fallos:0,
+
+  inicializar:function(){
+    this.intentos=0;
+    this.aciertos=0;
+    this.fallos=0;
+    $('#aciertosId').text(this.aciertos);
+    $('#fallosId').text(this.fallos);
+    $('#intentosId').text(this.intentos);
+  }
 }
 
 const tablero={
@@ -42,17 +51,26 @@ const tablero={
 
 // ------------------- MAIN ------------------------
 $(document).ready(function(){
-  var intentos=0;
-  var fallos=0;
-  var aciertos=0;
   if($.cookie("usuario")=='' ||$.cookie("usuario")==undefined){
     window.location.href = '../index.html'
   }
 
-  $('#salir').on('click', function(){
+  $('#btn-salir').on('click', function(){
     $.removeCookie("usuario") 
     window.location.href = '../index.html'
   })
+  $('#btn-tablero').on('click', function(){
+    if (marcador.aciertos!= tablero.listaCartas.length/2){
+      if (confirm("Estas seguro que quieres generar otro trablero") == true) {
+       document.getElementById("tablero").innerHTML="";
+       marcador.inicializar()
+       tablero.generarTablero()
+      } 
+    }
+    
+  })
+
+ 
   $('#usuarioId').text($.cookie("usuario"))
 
 });
@@ -73,13 +91,16 @@ function eventoPrueba(){
           //if(objects[0].dataset.targetId==objects[1].dataset.targetId){
           if(tablero.listaCartas[objects[0].dataset.targetId]==tablero.listaCartas[objects[1].dataset.targetId]){
             var objects = document.getElementsByClassName("active");
+            objects[1].firstElementChild.src=tablero.listaCartas[objects[0].dataset.targetId].imagen;
+            objects[0].firstElementChild.src=tablero.listaCartas[objects[0].dataset.targetId].imagen;
             objects[1].classList.add("acertado");
             objects[1].classList.remove("active");
-            
+           
     
             //objects[1].classList.add("acertado");
             objects[0].classList.add("acertado");
             objects[0].classList.remove("active");
+            
           
             //objects[0].classList;
           // $(event.currentTarget).remove("active")

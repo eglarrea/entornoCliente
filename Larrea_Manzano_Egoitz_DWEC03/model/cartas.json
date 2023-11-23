@@ -1,23 +1,23 @@
 [   
    {
       "id":1,
-	  "imagen":"images\/java.jpg"
+	  "imagen":"images\/java.png"
       
    },
    {
       "id":2,
-      "imagen":"images\/angular.jpg"
+      "imagen":"../images\/angular.png"
    },
 
    {
       "id":3,
-      "imagen":"images\/js.jpg"
+      "imagen":"images\/js.png"
    }
    ,
 
    {
       "id":4,
-      "imagen":"images\/python.jpg"
+      "imagen":"images\/python.png"
    }
    
 ]

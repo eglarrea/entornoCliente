@@ -33,19 +33,7 @@ const usuarios = {
   anadirUsuario:function(usuario) {
     //Comprobamos si el dato pasado es del tipo Socio
     if(usuario instanceof Usuario ){
-      /*let existe=false;
-      for (var i=0;i<this.listaSocios.length;i++){
-        if(this.listaUsuarios[i].nombre.trim().toUpperCase()==usuario.nombre.trim().toUpperCase() 
-            &&  this.listaUsuarios[i].apellido.trim().toUpperCase()==usuario.apellido.trim().toUpperCase()){
-          existe=true;
-          break;
-        }
-      }
-      if(!existe){*/
         this.listaUsuarios.push(usuario);
-     /* }else{
-        alert("Socio ya dado de alta")
-      }*/
     } else {
       console.log("Se ha intentado agregar un datos que no es de tipo Usuario")
     }
@@ -64,7 +52,6 @@ const usuarios = {
     }
     return false;
   },
-
 }
 // ------------------- FUNCIONES ------------------------
 

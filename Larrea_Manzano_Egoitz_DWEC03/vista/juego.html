@@ -10,15 +10,7 @@
         <!------------- TITULO DE LA PAGINA ---------------------->
         <title>Tarea Evaluativa DWEC03</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet" >
-        <style>
-          .active{
-   
-    background-color:#69696942
-}
-.acertado{
-   
-   border-style:none;
-}
+        <link href="../css/main.css" rel="stylesheet" >
         </style>
     </head>
 
@@ -27,68 +19,51 @@
       <!------------- TITULO DEL APARTADO ---------------------->
    
       <!---------------EJERCICIO 1 - AÑADIR SOCIOS -->
-      <div class="row mt-3">
-        <label class="col-2">Aciertos:</label>
-        <label class="col-1" id="aciertosId"></label>
-        <label class="col-2">Fallos:</label>
-        <label class="col-1" id="fallosId"></label>
-        <label class="col-2" >Intentos:</label>
-        <label class="col-1" id="intentosId"></label>
-        <label class="col-2"  >Usuario:</label>
-        <label class="col-1" id="usuarioId"></label>
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-primary float-right me-md-5 " type="button" id="btn-tablero">Cargar tablero</button>
-          <button class="btn btn-primary float-right me-md-5 " type="button" id="btn-salir">Salir</button>
-        </div>
-      
-      <hr>
-     
-      <div  class="form-signin w-100 m-auto container" >
-        <!--<div class="row mt-3">
-          <div class="card ms-3 carta " style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3 " data-target-id="12314" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" data-target-id="12314" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
+      <div class="container-fluid">
+        <div class="row mt-3">
+          <label class="col-2" style="
+          font-family: fantasy;">Aciertos:<span class="ms-3" id="aciertosId"></span></label>
+          
+          <label class="col-2" style="font-family: fantasy;">Fallos:<span class="ms-3" id="fallosId"></span></label>
 
-          <div class="card carta ms-3 " data-index-number="12314" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3 " data-index-number="12314" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
-          <div class="card carta ms-3" style="width: 18rem;">
-            <img class="card-img-top" src="../images/carta.png" >
-          </div>
+          <label class="col-2 " style="font-family: fantasy;" >Intentos:<span class="ms-3" id="intentosId"></span></label>
+        
+          <label class="col-5 d-md-flex justify-content-md-end"  >Usuario:<span class="ms-3" id="usuarioId"></span></label>
         </div>
-      </div>-->
-      <div  class="form-signin w-100 m-auto container" >
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="#" class="btn btn-primary float-right me-md-5 " data-bs-toggle="modal" data-bs-target="#modalGenerarTablero">Cargar tablero</a>
+            <button class="btn btn-danger float-right me-md-5 " type="button" id="btn-salir">Salir</button>
+        </div>
+      </div>
+
+      <hr>
+
+      <div  class="container-fluid" >
         <div class="row mt-3" id="tablero">
         </div>
       </div>
+
+      <div class="modal fade" id="modalGenerarTablero" tabindex="-1" role="dialog" aria-labelledby="modalGenerarTableroLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalGenerarTableroLabel">Generar tablero</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             Vas a generar un nuevo tablero. ¿Estás seguro?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" id="btn-tablero">Sí</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
      <!-------------LAMADA SCRIPTS---------------------->
     <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie.min.js"></script>

@@ -43,6 +43,7 @@ const usuarios = {
     for(var i=0;i<this.listaUsuarios.length;i++) {
       if(this.listaUsuarios[i].usuario==usuario){
         if(this.listaUsuarios[i].esContrasenaValida(clave)){
+          $.cookie("usuario", this.listaUsuarios[i].nombre+" "+this.listaUsuarios[i].apellido); 
           return true;
         }else{
           return false;
@@ -131,7 +132,6 @@ $(document).ready(function(){
   $("#formLogin").on('submit', function(event,e){
     event.preventDefault(); 
     if(capturarDatosSocio ()){
-      $.cookie("usuario", "Egoitz Larrea"); 
       window.location.href = '/vista/juego.html';
     }else{
       $('#error').removeClass("d-none");

@@ -90,7 +90,6 @@ function eventoClicCarta(){
           $('#intentosId').text( marcador.intentos);
               
           if(tablero.listaCartas[objects[0].dataset.targetId]==tablero.listaCartas[objects[1].dataset.targetId]){
-            var objects = document.getElementsByClassName("active");
             objects[1].firstElementChild.src=tablero.listaCartas[objects[0].dataset.targetId].imagen;
             objects[0].firstElementChild.src=tablero.listaCartas[objects[0].dataset.targetId].imagen;
             objects[1].classList.add("acertado");

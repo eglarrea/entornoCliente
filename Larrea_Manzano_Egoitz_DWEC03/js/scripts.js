@@ -18,14 +18,6 @@ include('../model/Usuario.js');
 console.log('Empieza el programa')
 
 // ------------------- VARIABLES GLOBALES ------------------------
-// capturamos el formulario de introduccion de socios - Ejercicio 1
-//const formulario = document.querySelector('#formNombre')
-// capturamos el contenedor donde escribiremos los socios - Ejercicio 2
-
-//const contenedorEscribirSocios = document.getElementById(
-//  'contenedorPintarSocios'
-//)
-
 const usuarios = {
   listaUsuarios : [],
 
@@ -38,7 +30,8 @@ const usuarios = {
       console.log("Se ha intentado agregar un datos que no es de tipo Usuario")
     }
   },
-  //Encadena y retorna la lista de socios 
+
+  //Comprueba si el usuario es correcto y crea cookie si es correcto
   usuarioValido:function(usuario,clave) {
     for(var i=0;i<this.listaUsuarios.length;i++) {
       if(this.listaUsuarios[i].usuario==usuario){
@@ -49,7 +42,6 @@ const usuarios = {
           return false;
         }
       }
-   
     }
     return false;
   },
@@ -85,9 +77,8 @@ TODO:  metodo para añadir socios al array
     cuando arranca la pagina web
 */
 function aniadirUsuarioInicialesArray(data) {
-    console.log('socios', data);
     for( var i=0;(data!==undefined) && (i< data.length) ;i++){
-      console.log(i+" :"+data[i].id+" "+data[i].nombre+" "+data[i].apellido+" "+data[i].usuario+" "+ data[i].contraseña);
+      //console.log(i+" :"+data[i].id+" "+data[i].nombre+" "+data[i].apellido+" "+data[i].usuario+" "+ data[i].contraseña);
       let socio= new Usuario(data[i].id,data[i].nombre,data[i].apellido,data[i].usuario,data[i].contraseña);
       usuarios.anadirUsuario(socio);
     }
@@ -98,7 +89,7 @@ function aniadirUsuarioInicialesArray(data) {
 
 */
 function capturarDatosSocio () {
-  // TODO: recoger los el nombre y apellido del HTML
+  // TODO: recoger los el usuario y clave del HTML
   let usuario=document.getElementById("usuarioID").value;
   let clave=document.getElementById("claveID").value;
   if(usuario.trim()=='' || clave.trim()==''){
@@ -110,19 +101,6 @@ function capturarDatosSocio () {
     return false;
    }
   }
-  // TODO: crear el socio y añadirlo al array
-}
-
-/* 
-TODO: 
-    Metodo para crear un socio pasandole el nombre y el apellido
-    y añadirlo al array
- */
-function crearUsuario (nombre, apellido) {
-  // TODO: crear objeto socio
-  let usuario= new Usuario(crearID (),nombre,apellido);
-  // TODO: añadir el objeto al array
-  usuarios.anadirSocio(usuario);
 }
 
 // ------------------- MAIN ------------------------
@@ -137,44 +115,6 @@ $(document).ready(function(){
       $('#error').removeClass("d-none");
     }
   })
-
-	$(".carta").on('click', function(event,e){
-    if(!$(event.currentTarget).hasClass("acertado")){
-      if($(event.currentTarget).hasClass("active")){
-        $(event.currentTarget).removeClass("active")
-      }else{
-        $(event.currentTarget).addClass("active")
-        //event.currentTarget.dataset.targetId
-        var objects = document.getElementsByClassName("active");
-        if(objects.length==2){
-          if(objects[0].dataset.targetId==objects[1].dataset.targetId){
-            var objects = document.getElementsByClassName("active");
-            objects[1].classList.add("acertado");
-            objects[1].classList.remove("active");
-            
-    
-            //objects[1].classList.add("acertado");
-            objects[0].classList.add("acertado");
-            objects[0].classList.remove("active");
-           
-            //objects[0].classList;
-           // $(event.currentTarget).remove("active")
-            //$(event.currentTarget).addClass("acertado")
-          
-           
-          }else{
-            objects[1].classList.remove("active");
-            objects[0].classList.remove("active");
-           
-          }
-        }
-      }
-    }
-    
-    console.log($(event.currentTarget).hasClass("active"))
-    //(... rest of your JS code)
-  });
 });
-// TODO: añadimos los socios iniciales cuando empieza el programa
 
 console.log('Acaba el programa')

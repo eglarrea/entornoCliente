@@ -7,14 +7,6 @@ class Carta {
       this.imagen2="../images/carta.png"
   }
 
-  esContrasenaValida(contra){
-    if(this.contrasena===contra){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
   render(id) {
     return "<div class='card carta ms-3' data-target-id='"+id+"' style='width: 18rem;'> <img class='card-img-top' src='"+this.imagen2+"' > </div>";
   }
